@@ -1,56 +1,55 @@
 import tkinter as tk
-from tkinter import *
-from tkinter import PhotoImage
-from tkinter import messagebox
-import os
+from tkinter import ttk
+from PIL import ImageTk, Image
 
-def reserve():
-    root.destroy()
-    os.system('python reserve.py')
-
-def contact():
-    root.destroy()
-    os.system('python contact.py')
-
-def occasion():
-    root.destroy()
-    os.system('python Sp_book.py')
-
-
-
+# Create the main window
 root = tk.Tk()
-root.geometry("1200x1000")
-root.resizable(False,False)
-root.configure(bg='light blue')
-root.title('Services')
+root.title("Stylish Dashboard")
 
-heading=Label(root,text='Welcome to Our Hotel . We are looking forward to providing you with great service! ',fg="#000000",bg="White" ,font=("Gill Sans MT", 20))
-heading.place(x=35,y=25)
+# Load an image
+img1 = Image.open("3.png")
+img1 = img1.resize((200, 200))
+img1 = ImageTk.PhotoImage(img1)
 
-image = PhotoImage(file="3.png")
+img2 = Image.open("Update your reservation.png")
+img2 = img2.resize((200, 200))
+img2 = ImageTk.PhotoImage(img2)
 
-button1 = Button(root, text="Sign Up",image=image,font=("Arial", 20),command=reserve)
-button1.configure(width=250, height=250)
-button1.place(x=70, y=150)
+img3 = Image.open("sp.png")
+img3 = img3.resize((200, 200))
+img3 = ImageTk.PhotoImage(img3)
 
-image2 = PhotoImage(file="Update your reservation.png")
+img4 = Image.open("4.png")
+img4 = img4.resize((200, 200))
+img4 = ImageTk.PhotoImage(img4)
 
-button1 = Button(root,image=image2,font=("Arial", 20))
-button1.configure(width=250, height=250)
-button1.place(x=480, y=150)
+img5 = Image.open("contact_1.png")
+img5 = img5.resize((1400, 330))
+img5 = ImageTk.PhotoImage(img5)
 
+# Define a custom style for the buttons
+style = ttk.Style()
+style.configure("Custom.TButton", font=("Courier", 14), foreground="#ffffff", background="#6c7ae0", padding=10, width=15)
 
+# Create the widgets
+label = ttk.Label(root, text="WELCOME TO OCEAN HOTEL !")
+label.config(font=("Courier", 30), padding=10)
+image1 = Image.open("contact_1.png")
+image_label = ttk.Label(root, image=img5)
+label1 = ttk.Label(root, text="We are looking forward to providing you with great service")
+label1.config(font=("Courier", 30), padding=10)
+button1 = ttk.Button(root, text="Button 1",image=img1, style="Custom.TButton")
+button2 = ttk.Button(root, text="Button 2",image=img2, style="Custom.TButton")
+button3 = ttk.Button(root, text="Button 3",image=img3, style="Custom.TButton")
+button4 = ttk.Button(root, text="Button 4",image=img4, style="Custom.TButton")
 
-image3 = PhotoImage(file="sp.png")
+label.grid(row=0, column=0, columnspan=4, pady=10)
+image_label.grid(row=1, column=0, columnspan=4, pady=10)
+label1.grid(row=2, column=0, columnspan=4, pady=10)
+button1.grid(row=3, column=0, padx=10, pady=10)
+button2.grid(row=3, column=1, padx=10, pady=10)
+button3.grid(row=3, column=2, padx=10, pady=10)
+button4.grid(row=3, column=3, padx=10, pady=10)
 
-button1 = Button(root,image=image3,font=("Arial", 20),command=occasion)
-button1.configure(width=250, height=250)
-button1.place(x=480+410, y=150)
-
-image4 = PhotoImage(file="4.png")
-
-button1 = Button(root,image=image4,font=("Arial", 20),command=contact)
-button1.configure(width=250, height=250)
-button1.place(x=480, y=500)
-
+# Start the main loop
 root.mainloop()
